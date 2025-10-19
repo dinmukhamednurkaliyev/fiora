@@ -1,11 +1,12 @@
+import 'package:fiora/pallete.dart';
 import 'package:fiora/configuration.dart';
 import 'package:flutter/material.dart';
 
 @immutable
-class FioraThemes {
+class FioraTheme {
   final FioraConfiguration configuration;
 
-  const FioraThemes({required this.configuration});
+  const FioraTheme.internal({required this.configuration});
 
   ThemeData get light => _buildThemeData(
     brightness: Brightness.light,
@@ -40,10 +41,9 @@ class FioraThemes {
       surfaceTint: Colors.transparent,
     );
 
-    final textTheme = _buildTextTheme(
-      colorScheme: colorScheme,
-      fontFamily: configuration.fontFamily,
-    );
+    final textTheme = configuration.typography.buildTextTheme(colorScheme);
+
+    var extensions = <ThemeExtension<dynamic>>[];
 
     return ThemeData(
       useMaterial3: true,
@@ -51,21 +51,7 @@ class FioraThemes {
       colorScheme: colorScheme,
       textTheme: textTheme,
       scaffoldBackgroundColor: colorScheme.surface,
-
-      extensions: <ThemeExtension<dynamic>>[],
-    );
-  }
-
-  static TextTheme _buildTextTheme({
-    required ColorScheme colorScheme,
-    String? fontFamily,
-  }) {
-    const baseTextTheme = TextTheme();
-
-    return baseTextTheme.apply(
-      fontFamily: fontFamily,
-      bodyColor: colorScheme.onSurface,
-      displayColor: colorScheme.onSurface,
+      extensions: extensions,
     );
   }
 }

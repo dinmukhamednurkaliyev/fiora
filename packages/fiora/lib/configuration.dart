@@ -1,50 +1,36 @@
+import 'package:fiora/pallete.dart';
+import 'package:fiora/typography.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-class FioraColorPair {
-  final Color main;
-  final Color on;
+part 'configuration.freezed.dart';
 
-  const FioraColorPair({required this.main, required this.on});
+@freezed
+abstract class FioraConfiguration with _$FioraConfiguration {
+  const factory FioraConfiguration({
+    required FioraPalette lightPalette,
+    required FioraPalette darkPalette,
+    @Default(FioraTypography.standard) FioraTypography typography,
+  }) = _FioraConfiguration;
 
-  factory FioraColorPair.fromMain(Color main) {
-    return FioraColorPair(
-      main: main,
-      on: ThemeData.estimateBrightnessForColor(main) == Brightness.dark
-          ? Colors.white
-          : Colors.black,
+  const FioraConfiguration._();
+
+  factory FioraConfiguration.create({
+    required Color primaryColor,
+    Color? darkPrimaryColor,
+    String? fontFamily,
+  }) {
+    final lightPalette = FioraPalette.fromPrimary(primaryColor);
+    final darkPalette = FioraPalette.fromPrimary(
+      darkPrimaryColor ?? primaryColor,
+    );
+
+    final typography = FioraTypography(fontFamily: fontFamily);
+
+    return FioraConfiguration(
+      lightPalette: lightPalette,
+      darkPalette: darkPalette,
+      typography: typography,
     );
   }
-}
-
-@immutable
-class FioraPalette {
-  final FioraColorPair primary;
-  final FioraColorPair secondary;
-  final FioraColorPair? tertiary;
-  final FioraColorPair surface;
-  final FioraColorPair error;
-
-  const FioraPalette({
-    required this.primary,
-    required this.secondary,
-    required this.surface,
-    required this.error,
-    this.tertiary,
-  });
-}
-
-@immutable
-class FioraConfiguration {
-  final FioraPalette lightPalette;
-  final FioraPalette darkPalette;
-  final String? fontFamily;
-  final double defaultBorderRadius;
-
-  const FioraConfiguration({
-    required this.lightPalette,
-    required this.darkPalette,
-    this.fontFamily,
-    this.defaultBorderRadius = 12.0,
-  });
 }
