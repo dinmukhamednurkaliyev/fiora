@@ -1,6 +1,5 @@
+import 'package:fiora/fiora.dart';
 import 'package:flutter/material.dart';
-
-import '../core/configuration.dart';
 
 @immutable
 class FioraThemeData extends ThemeExtension<FioraThemeData> {
@@ -10,9 +9,7 @@ class FioraThemeData extends ThemeExtension<FioraThemeData> {
 
   @override
   FioraThemeData copyWith({FioraConfiguration? configuration}) {
-    return FioraThemeData(
-      configuration: configuration ?? this.configuration,
-    );
+    return FioraThemeData(configuration: configuration ?? this.configuration);
   }
 
   @override
