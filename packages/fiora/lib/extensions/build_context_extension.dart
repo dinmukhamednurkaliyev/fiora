@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/fiora_theme_data.dart';
+
 typedef FioraTextStyles = ({
   TextStyle? displayLarge,
   TextStyle? displayMedium,
@@ -24,6 +26,8 @@ typedef FioraTextStyles = ({
 
 extension FioraBuildContextExtension on BuildContext {
   ThemeData get theme => Theme.of(this);
+
+  FioraThemeData get fioraTheme => theme.extension<FioraThemeData>()!;
 
   ColorScheme get colors => theme.colorScheme;
 
@@ -58,8 +62,8 @@ extension FioraMediaExtensions on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
 
   Size get screenSize => mediaQuery.size;
-  double get screenWidth => screenSize.width;
-  double get screenHeight => screenSize.height;
+  double get screenWidth => mediaQuery.size.width;
+  double get screenHeight => mediaQuery.size.height;
 
   EdgeInsets get padding => mediaQuery.padding;
 

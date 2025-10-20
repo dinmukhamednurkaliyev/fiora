@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pallete.freezed.dart';
@@ -11,9 +12,7 @@ abstract class FioraColorPair with _$FioraColorPair {
   factory FioraColorPair.fromMain(Color main) {
     return FioraColorPair(
       main: main,
-      on: ThemeData.estimateBrightnessForColor(main) == Brightness.dark
-          ? Colors.white
-          : Colors.black,
+      on: main.computeLuminance() > 0.5 ? const Color(0xFF000000) : const Color(0xFFFFFFFF),
     );
   }
 }
@@ -27,22 +26,4 @@ abstract class FioraPalette with _$FioraPalette {
     required FioraColorPair surface,
     required FioraColorPair error,
   }) = _FioraPalette;
-
-  factory FioraPalette.fromPrimary(
-    Color primaryColor, {
-    Color? surfaceColor,
-    Color? errorColor,
-  }) {
-    final primaryPair = FioraColorPair.fromMain(primaryColor);
-
-    final fromSeed = ColorScheme.fromSeed(seedColor: primaryColor);
-
-    return FioraPalette(
-      primary: primaryPair,
-      secondary: FioraColorPair.fromMain(fromSeed.secondary),
-      tertiary: FioraColorPair.fromMain(fromSeed.tertiary),
-      surface: FioraColorPair.fromMain(surfaceColor ?? fromSeed.surface),
-      error: FioraColorPair.fromMain(errorColor ?? fromSeed.error),
-    );
-  }
 }

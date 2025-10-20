@@ -1,12 +1,15 @@
 library;
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-import 'fiora.dart';
+import 'core/configuration.dart';
+import 'core/typography.dart';
+import 'theme/material/material_palette.dart';
+import 'theme/material/material_theme.dart';
 
 export 'core/configuration.dart';
 export 'core/pallete.dart';
-export 'core/theme.dart';
 export 'core/typography.dart';
 export 'extensions/build_context_extension.dart';
 export 'extensions/device_extension.dart';
@@ -14,13 +17,14 @@ export 'extensions/widget_flex_extension.dart';
 export 'extensions/widget_interaction_extension.dart';
 export 'extensions/widget_styling_extension.dart';
 export 'extensions/widget_visibility_extension.dart';
+export 'theme/fiora_theme_data.dart';
 
 @immutable
 abstract final class Fiora {
-  static FioraTheme? _themes;
+  static FioraMaterialThemeBuilder? _themes;
   static FioraConfiguration? _configuration;
 
-  static FioraTheme get themes {
+  static FioraMaterialThemeBuilder get themes {
     _assertInitialized('themes');
     return _themes!;
   }
@@ -40,9 +44,25 @@ abstract final class Fiora {
 
     _configuration = configuration;
 
-    _themes = FioraTheme.internal(configuration: configuration);
+    _themes = FioraMaterialThemeBuilder.internal(configuration: configuration);
 
     debugPrint('[Fiora] Fiora Design System initialized successfully.');
+  }
+
+  static FioraConfiguration createMaterialConfiguration({
+    required Color primaryColor,
+    String? fontFamily,
+    Color? surfaceColor,
+    Color? errorColor,
+  }) {
+    final palette = MaterialFioraPalette.fromPrimary(
+      primaryColor,
+      surfaceColor: surfaceColor,
+      errorColor: errorColor,
+    );
+    final typography = FioraTypography(fontFamily: fontFamily);
+
+    return FioraConfiguration(palette: palette, typography: typography);
   }
 
   static void _assertInitialized(String propertyName) {

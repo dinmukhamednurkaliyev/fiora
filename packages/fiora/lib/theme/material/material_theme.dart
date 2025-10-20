@@ -1,13 +1,13 @@
-import 'package:fiora/core/configuration.dart';
-import 'package:fiora/core/pallete.dart';
-import 'package:fiora/theme/material/material_typography.dart';
+import 'package:fiora/fiora.dart';
 import 'package:flutter/material.dart';
 
+import 'material_typography.dart';
+
 @immutable
-class FioraTheme {
+class FioraMaterialThemeBuilder {
   final FioraConfiguration configuration;
 
-  const FioraTheme.internal({required this.configuration});
+  const FioraMaterialThemeBuilder.internal({required this.configuration});
 
   Color get _seedColor => configuration.palette.primary.main;
 
@@ -46,7 +46,9 @@ class FioraTheme {
 
     final textTheme = configuration.typography.buildTextTheme(colorScheme);
 
-    var extensions = <ThemeExtension<dynamic>>[];
+    var extensions = <ThemeExtension<dynamic>>[
+      FioraThemeData(configuration: configuration),
+    ];
 
     return ThemeData(
       useMaterial3: true,
