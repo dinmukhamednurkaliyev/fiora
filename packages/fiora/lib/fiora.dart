@@ -7,7 +7,6 @@ import 'fiora.dart';
 export 'core/configuration.dart';
 export 'core/pallete.dart';
 export 'core/theme.dart';
-export 'core/types.dart';
 export 'core/typography.dart';
 export 'extensions/build_context_extension.dart';
 export 'extensions/device_extension.dart';

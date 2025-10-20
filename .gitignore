@@ -31,3 +31,4 @@ migrate_working_dir/
 /coverage/
 *.g.dart
 *.freezed.dart
+GEMINI.md
