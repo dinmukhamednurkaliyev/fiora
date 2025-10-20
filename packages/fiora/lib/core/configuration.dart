@@ -8,29 +8,25 @@ part 'configuration.freezed.dart';
 @freezed
 abstract class FioraConfiguration with _$FioraConfiguration {
   const factory FioraConfiguration({
-    required FioraPalette lightPalette,
-    required FioraPalette darkPalette,
+    required FioraPalette palette,
     @Default(FioraTypography.standard) FioraTypography typography,
+    @Default(12.0) double defaultBorderRadius,
   }) = _FioraConfiguration;
 
   const FioraConfiguration._();
 
   factory FioraConfiguration.create({
     required Color primaryColor,
-    Color? darkPrimaryColor,
     String? fontFamily,
+    double defaultBorderRadius = 12.0,
   }) {
-    final lightPalette = FioraPalette.fromPrimary(primaryColor);
-    final darkPalette = FioraPalette.fromPrimary(
-      darkPrimaryColor ?? primaryColor,
-    );
-
+    final palette = FioraPalette.fromPrimary(primaryColor);
     final typography = FioraTypography(fontFamily: fontFamily);
 
     return FioraConfiguration(
-      lightPalette: lightPalette,
-      darkPalette: darkPalette,
+      palette: palette,
       typography: typography,
+      defaultBorderRadius: defaultBorderRadius,
     );
   }
 }

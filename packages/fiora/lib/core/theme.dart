@@ -2,40 +2,40 @@ import 'package:fiora/core/configuration.dart';
 import 'package:fiora/core/pallete.dart';
 import 'package:flutter/material.dart';
 
-typedef FioraThemeSet = ({ThemeData light, ThemeData dark});
-
 @immutable
 class FioraTheme {
   final FioraConfiguration configuration;
 
   const FioraTheme.internal({required this.configuration});
 
+  Color get _seedColor => configuration.palette.primary.main;
+
   ThemeData get light => _buildThemeData(
     brightness: Brightness.light,
-    palette: configuration.lightPalette,
+    palette: configuration.palette,
+    seedColor: _seedColor,
   );
 
   ThemeData get dark => _buildThemeData(
     brightness: Brightness.dark,
-    palette: configuration.darkPalette,
+    palette: configuration.palette,
+    seedColor: _seedColor,
   );
 
   ThemeData _buildThemeData({
     required Brightness brightness,
     required FioraPalette palette,
+    required Color seedColor,
   }) {
     final baseScheme = ColorScheme.fromSeed(
-      seedColor: palette.primary.main,
+      seedColor: seedColor,
       brightness: brightness,
     );
 
     final colorScheme = baseScheme.copyWith(
       primary: palette.primary.main,
       onPrimary: palette.primary.on,
-      secondary: palette.secondary.main,
-      onSecondary: palette.secondary.on,
-      tertiary: palette.tertiary?.main,
-      onTertiary: palette.tertiary?.on,
+
       surface: palette.surface.main,
       onSurface: palette.surface.on,
       error: palette.error.main,
