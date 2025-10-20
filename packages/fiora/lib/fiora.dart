@@ -1,10 +1,8 @@
 library;
 
-
 import 'package:flutter/foundation.dart';
 
 import 'source/core/core.dart';
-
 
 export 'source/core/core.dart';
 export 'source/extensions/extensions.dart';
@@ -24,7 +22,7 @@ abstract final class Fiora {
     return _configuration!;
   }
 
-  static void initialize(FioraConfiguration configuration) {
+  static void initialize({required FioraConfiguration configuration}) {
     if (_configuration != null) {
       debugPrint(
         '[Fiora] Fiora has already been initialized. Skipping re-initialization.',
