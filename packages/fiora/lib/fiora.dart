@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'fiora.dart';
 
 export 'core/configuration.dart';
+export 'core/pallete.dart';
 export 'core/theme.dart';
 export 'core/types.dart';
 export 'core/typography.dart';
