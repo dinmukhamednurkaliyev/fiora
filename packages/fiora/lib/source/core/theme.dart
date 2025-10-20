@@ -1,5 +1,5 @@
-import 'package:fiora/pallete.dart';
-import 'package:fiora/configuration.dart';
+import 'package:fiora/source/core/pallete.dart';
+import 'package:fiora/source/core/configuration.dart';
 import 'package:flutter/material.dart';
 
 @immutable

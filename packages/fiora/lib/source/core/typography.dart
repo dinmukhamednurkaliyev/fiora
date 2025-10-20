@@ -134,7 +134,7 @@ abstract class FioraTypography with _$FioraTypography {
       labelSmall: labelSmall ?? FioraTypography.standard.labelSmall,
     );
 
-    final textTheme = TextTheme(
+    return TextTheme(
       displayLarge: merged.displayLarge,
       displayMedium: merged.displayMedium,
       displaySmall: merged.displaySmall,
@@ -150,9 +150,7 @@ abstract class FioraTypography with _$FioraTypography {
       labelLarge: merged.labelLarge,
       labelMedium: merged.labelMedium,
       labelSmall: merged.labelSmall,
-    );
-
-    return textTheme.apply(
+    ).apply(
       fontFamily: merged.fontFamily,
       bodyColor: colorScheme.onSurface,
       displayColor: colorScheme.onSurface,

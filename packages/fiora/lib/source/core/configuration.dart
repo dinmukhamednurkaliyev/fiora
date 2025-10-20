@@ -1,5 +1,5 @@
-import 'package:fiora/pallete.dart';
-import 'package:fiora/typography.dart';
+import 'package:fiora/source/core/pallete.dart';
+import 'package:fiora/source/core/typography.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

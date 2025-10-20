@@ -1,10 +1,13 @@
 library;
 
-import 'package:fiora/configuration.dart';
-import 'package:fiora/themes.dart';
+
 import 'package:flutter/foundation.dart';
 
-export 'configuration.dart';
+import 'source/core/core.dart';
+
+
+export 'source/core/core.dart';
+export 'source/extensions/extensions.dart';
 
 @immutable
 abstract final class Fiora {
