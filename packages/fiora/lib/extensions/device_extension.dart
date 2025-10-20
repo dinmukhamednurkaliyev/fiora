@@ -1,6 +1,5 @@
+import 'package:fiora/fiora.dart';
 import 'package:flutter/material.dart';
-
-import 'extensions.dart';
 
 extension FioraDeviceExtensions on BuildContext {
   static const double _compactBreakpoint = 600.0;

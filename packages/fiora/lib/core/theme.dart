@@ -1,5 +1,5 @@
-import 'package:fiora/source/core/configuration.dart';
-import 'package:fiora/source/core/pallete.dart';
+import 'package:fiora/core/configuration.dart';
+import 'package:fiora/core/pallete.dart';
 import 'package:flutter/material.dart';
 
 typedef FioraThemeSet = ({ThemeData light, ThemeData dark});

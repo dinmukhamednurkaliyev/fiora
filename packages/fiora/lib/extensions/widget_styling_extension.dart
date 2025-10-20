@@ -1,6 +1,5 @@
+import 'package:fiora/fiora.dart';
 import 'package:flutter/widgets.dart';
-
-import 'extensions.dart';
 
 extension FioraStylingExtension on Widget {
   Widget rounded(double radius) {

@@ -2,10 +2,18 @@ library;
 
 import 'package:flutter/foundation.dart';
 
-import 'source/core/core.dart';
+import 'fiora.dart';
 
-export 'source/core/core.dart';
-export 'source/extensions/extensions.dart';
+export 'core/configuration.dart';
+export 'core/theme.dart';
+export 'core/types.dart';
+export 'core/typography.dart';
+export 'extensions/build_context_extension.dart';
+export 'extensions/device_extension.dart';
+export 'extensions/widget_flex_extension.dart';
+export 'extensions/widget_interaction_extension.dart';
+export 'extensions/widget_styling_extension.dart';
+export 'extensions/widget_visibility_extension.dart';
 
 @immutable
 abstract final class Fiora {
